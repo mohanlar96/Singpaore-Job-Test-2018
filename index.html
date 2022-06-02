@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" data-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.">
+    <!--This token will generate from Server
+    also we can access by session or cookie
+    -->
+
+    <title>Testing Project for Frontend Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <!-- for range calender  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <!-- done for range calender  -->
+    <link rel="stylesheet" href="css/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="css/starrr.css">
+     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loader.css">
+</head>
+<body style="height:1000px;">
+<div id="loader"></div>
+<div class="container-fluid animate-bottom"  ng-app="testingApp" ng-controller="hotelController">
+    <div class="row">
+        <div class="col-lg-7" id="container"  style="width: 746px;">
+            <div class="row" id="header">
+                <h1>HOTELS, RESORTS, HOSTELS & MORE</h1>
+                <h2>Get the best prices on 1,900,000+ properties, worldwide</h2>
+            </div>
+            <ul class="nav nav-tabs">
+                <li class="active" ng-click="showRoom=true;searchType='Hotels';"><a data-toggle="tab" href="#hotels">Hotels</a></li>
+                <li ng-click="changeHome()"><a data-toggle="tab" href="#home">Homes</a></li>
+            </ul>
+            <div class="tab-content" >
+                <!-- here is section for drop down  -->
+                <div class="dropdown" ng-show="showDropdown">
+                    <div id="overlay" ng-click="runNoFocus()"></div>
+                    <div class="arrow-down"></div>
+                    <div class="dropdown-content">
+                        <a href="#" ng-repeat="x in searchResult" ng-click="getSelectedValue($index)">
+                            <i class="fa fa-{{x.fontawesomeIcon}} fa-2x"></i>
+                            <span> {{x.Place}}</span>
+                            <span style="float: right;" class="total-properties"> {{x.properties}}
+                                    <span>proprities</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <!-- end section for dropdown -->
+                <div id="hotels" class="tab-pane fade in active">
+                    <ul id="input-list">
+                        <li>
+                            <i class="fa fa-search search-icon" ng-click="runFocus()"></i>
+                            <input id="searchHotels" ng-click="runFocus()" name="search-hotels" ng-model="searchVal"
+                                   class="search" placeholder="Enter a destination or property " type="text"
+                                   name="search" />
+                        </li>
+                        <li>
+                            <div class="check-out" ng-click="openRangeCalendar()">
+                                <i class="fa fa-calendar check-out-search"></i>
+                                <ul class="selected-check-out-time">
+                                    <li id="startDisplayDate">{{startDisplayDate}}</li>
+                                    <li id="startDisplayDay"> {{startDisplayDay}}</li>
+                                </ul>
+                            </div>
+
+                            <div class="check-in" ng-click="openSecRangeCalendar()">
+                                <input type="text" style="visibility:hidden; position: absolute; left: 343px; top: 342px;"
+                                       name="daterange" id="dateTimeInput" />
+                                <i class="fa fa-calendar check-in-search"></i>
+                                <ul class="selected-check-in-time">
+                                    <li id="endDisplayDate">{{endDisplayDate}}</li>
+                                    <li id="endDisplayDay"> {{endDisplayDay}}</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="people" ng-click="showPeopleDropDown()">
+                                <i class="fa fa-users check-out-search"></i>
+                                <ul class="selected-people">
+                                    <li> {{adults}} Adults, {{children}} children </li>
+                                    <li ng-show="showRoom"> {{rooms}} Rooms</li>
+
+                                </ul>
+                            </div>
+                            <button class="btn search-btn" type="btn" ng-click="submitForm()">Search</button>
+                        </li>
+
+                        <!--starting drop down for room people -->
+                        <div class="people-drop-down" ng-show="showPeopleDropdown">
+                            <div id="overlay" ng-click="showPeopleDropdown=false;"></div>
+                            <div class="arrow-down"></div>
+                            <div class="dropdown-content">
+                                <a href="#" ng-show="showRoom">
+                                    <span class="count">{{rooms}}</span>
+                                    <span> Rooms&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                                    <span class="fa fa-minus" ng-hide="rooms==0" ng-click="rooms=rooms-1;"></span>
+
+                                    <span class="fa fa-plus" ng-click="rooms=rooms+1;"></span>
+                                </a>
+                                <a href="#">
+                                    <span class="count">{{adults}}</span>
+                                    <span> Adults&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    <span class="fa fa-minus" ng-hide="adults==0" ng-click="adults=adults-1;"></span>
+
+                                    <span class="fa fa-plus" ng-click="adults=adults+1;"></span>
+
+                                </a>
+                                <a href="#" >
+                                    <span class="count">{{children}}</span>
+                                    <span> Children</span>
+                                    <span class="fa fa-minus" ng-hide="children==0"
+                                          ng-click="subChildren()"></span>
+
+                                    <span class="fa fa-plus" ng-click="addChildren()"></span>
+                                </a>
+                                <a href="#" style="height: auto;">
+                                    <P style="text-align: center">Children Ages' </P>
+                                    <span id="appendChildrens" style="margin:0;" ></span>
+                                     <select style="display: none; margin: 10px;" class="children" name="childAge"><option value="undefined">−</option><option  value="1">&nbsp;&nbsp;&lt;1</option><option  value="1">&nbsp;&nbsp;1</option><option  value="2">&nbsp;&nbsp;2</option><option  value="3">&nbsp;&nbsp;3</option><option  value="4">&nbsp;&nbsp;4</option><option  value="5">&nbsp;&nbsp;5</option><option  value="6">&nbsp;&nbsp;6</option><option  value="7">&nbsp;&nbsp;7</option><option  value="8">&nbsp;&nbsp;8</option><option  value="9">&nbsp;&nbsp;9</option><option  value="10">&nbsp;&nbsp;10</option><option  value="11">&nbsp;&nbsp;11</option><option  value="12">&nbsp;&nbsp;12</option><option  value="13">&nbsp;&nbsp;13</option><option  value="14">&nbsp;&nbsp;14</option><option  value="15">&nbsp;&nbsp;15</option><option  value="16">&nbsp;&nbsp;16</option><option  value="17">&nbsp;&nbsp;17</option></select>
+                                </a>
+                            </div>
+                        </div>
+                        <!--ending  drop down for room people -->
+                    </ul>
+
+
+                    <!--Starting Model-->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title ">{{modalTitle}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{modalBody}}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row refined" ng-click="annimateRefined()">
+                          <span class="refined"> Refined your job search <i class="fa fa-arrow-down" > </i></span>
+                    </div>
+                    <!--starting for refined box-->
+                  <div class="row" id="ratingRefined">
+                      <div class="row">
+                          <div class="col-xs-6">
+                              <h3>Price Per Night </h3>
+                              <p>
+                                  <input id="price-per-night" type="text" class="span2" value="" data-slider-min="0" data-slider-tooltip="hide" data-slider-max="400" data-slider-step="10" data-slider-value="[0,400]"/>
+                                  <br>
+                                  <span id="price">SGD <i>0</i> to SGD <i>400</i>+</span>
+                              </p>
+
+                          </div>
+                          <div class="col-xs-6">
+                              <h3>Guest Rating  </h3>
+                              <p>
+                                  <input  id="guest-rating" type="text" class="span2" value="" data-slider-min="5.0" data-slider-tooltip="hide" data-slider-max="9.5" data-slider-step="0.5" data-slider-value="5.0"/>
+                                  <br>
+                                  <span id="rating"> ALL </span>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-12">
+                              <h3>Star Rating </h3>
+                              <p>
+                                   <div class='starrr' id='rating'></div>
+                                    <span class="choice"> and up </span>
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+                    <!--ending  for refined box-->
+                </div>
+                    <!-- end ui for Hotel Tap -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<!-- rating and start libiary -->
+<script src="js/bootstrap-slider.min.js"></script>
+<script src="js/starrr.js"></script>
+<!--angular controller-->
+<script src="js/controller.js"></script>
+<!-- done for angular controller -->
+
+</body>
+</html>

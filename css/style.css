@@ -1,0 +1,354 @@
+@font-face {
+    font-family: "mallory";
+    font-style: normal;
+    font-weight: 500;
+    src: url("../font/mallory-light-webfont-v01.woff2");
+}
+
+@font-face {
+    font-family: "mallory bold";
+    font-style: normal;
+    src: url("../font/Mallory-Book.woff2");
+}
+
+@font-face {
+    font-family: "mallory";
+    font-style: normal;
+    src: url("../font/mallory-medium.woff2");
+}
+
+body {
+    font-family: "mallory bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#container {
+    background: #019eebcc;
+    background-image: url("../img/skyline.png");
+    background-repeat: no-repeat;
+    background-image: url(../img/skyline.png), linear-gradient(#019eebcc, #192dd54d);
+    height: 600px;
+    /* background: #f68a73 url("../img/skyline.png") no-repeat;*/
+}
+
+#container > div.row {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+div#header {
+    font-size: 18px;
+    color: white;
+}
+#header h1 {
+    font-size: 26px;
+    font-weight: 700;
+}
+#header h2 {
+    font-size: 18px;
+}
+/*Done for heading background*/
+
+/*Start for Tabs (some properties is overwrite original of bootstrap )*/
+.nav-tabs {
+    border-bottom: none;
+}
+.nav-tabs > li > a {
+    background: initial;
+    border: 0px;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li > a,
+.nav-tabs li.active > a:hover {
+    border: 0px;
+    background: transparent;
+    font-size: 20px;
+    color: white;
+    font-weight: 500;
+}
+/*Overwritting done  */
+.nav-tabs > li > a:hover {
+    opacity: 0.7;
+}
+.nav-tabs > li.active > a:hover {
+    opacity: 1;
+}
+.nav-tabs > li.active {
+    opacity: 1;
+    border-bottom: 4px solid orange;
+}
+/* Done for tabs such as Hotels and Homes */
+/* Starting For Inputs for hotels and homes */
+ul#input-list {
+    list-style: none;
+    margin-top: 35px;
+    padding: 0;
+    width: 92%;
+}
+
+ul#input-list > li:first-child,
+ul#input-list > li:nth-child(2),
+div.people, div.search-btn {
+    cursor: pointer;
+    background: white;
+    opacity: 0.95;
+    height: 75px;
+    display: block;
+    margin-bottom: 15px;
+    -moz-box-shadow: 3px 3px 3px red;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+ul#input-list > li:first-child i.search-icon, input.search {
+    float: left;
+}
+
+ul#input-list i {
+    font-size: 28px;
+    opacity: 0.7;
+    position: relative;
+    margin-top: 25px;
+    margin-left: 20px;
+    float: left;
+}
+input.search,
+input.search:focus {
+    text-indent: 10px;
+    font-size: 21px;
+    margin-left: 30px;
+    margin-top: 25px;
+    width: 500px;
+    border: none;
+    opacity: 0.7;
+}
+div.check-out, div.people {
+    width: 50%;
+    float: left;
+    height: 100%;
+    border-right: 1px solid #c2c2c2;
+}
+div.check-in > ul,
+div.people > ul,
+div.check-out > ul {
+    margin-top: 18px;
+    float: left;
+    list-style: none;
+}
+div.people {
+    width: 68%;
+    height: 75px;
+}
+button.search-btn {
+    display: block;
+    color: white;
+    text-transform: uppercase;
+    height: 75px;
+    width: 200px;
+    background: orange;
+    border-radius: 3px;
+    float: right;
+    font-weight: bolder;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+}
+
+button.search-btn > input {
+    padding-top: 25px;
+    position: relative;
+}
+.btn {
+    transition: all 1s;
+}
+.btn:hover, .btn:focus {
+    color: white;
+    opacity: 0.7;
+}
+ul#input-list li li:last-child {
+    margin-top: 3px;
+    opacity: 0.6;
+}
+
+/*Straring For Drop Down section */
+
+#overlay,
+#overlayCalendar{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    cursor: pointer;
+}
+.arrow-down {
+    margin-left: 25px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+.dropdown ,
+.people-drop-down {
+    top: 125px;
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 658px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.dropdown-content a {
+    font-size: 18px;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a * {
+    margin-left: 25px;
+}
+
+.dropdown-content a:hover{
+    background-color: orange;
+    color: white;
+}
+.dropdown-content a span.total-properties{
+    margin-right: 30px;
+}
+
+
+/*Ending for drop down section */
+
+/*Starting for People Drop down  section */
+.people-drop-down{
+    position: absolute;
+    top: 460px;
+    left:15px;    
+}
+.people-drop-down>.dropdown-content{
+    padding: 10px;
+    min-width: 448px;
+    background-repeat: no-repeat;
+    background-image:  linear-gradient(white, #019eebcc);
+}
+.people-drop-down>.dropdown-content a:hover,
+.people-drop-down>.dropdown-content a{
+    height: 50px;
+    background: none;
+    cursor: inherit;
+    border-bottom: 1px solid rgba(0,0,0,0.3)
+}
+.people-drop-down>.dropdown-content a:last-child,
+.people-drop-down>.dropdown-content a:last-child:hover{
+    color: initial;
+    border-bottom: none;
+}
+.people-drop-down .dropdown-content>a>span:nth-last-child(1),
+.people-drop-down .dropdown-content>a>span:nth-last-child(2){
+    color: rgba(255,0,0,0.7);
+    width: 30px;
+    text-align: center;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+.people-drop-down .dropdown-content>a>span:nth-child(1){
+    color: black;
+    font-weight: bolder;
+    font-size: 20px;    
+}
+.people-drop-down .dropdown-content>a>span:nth-child(2){
+    color: gray;
+    font-weight: bolder;
+    width: 40px;
+    height: auto;
+}
+
+.people-drop-down .dropdown-content>a>span:last-child{
+    float: right;
+    margin-right: 40px;
+    
+}
+.people-drop-down .dropdown-content>a>span:nth-child(3){
+    margin-left: 60px;
+    position: relative; 
+}
+
+/*end for daterange picker*/
+.selected-date{
+    background: blue;
+}
+div.refined{
+    position: absolute;
+    margin-left: 230px;
+    margin-top: 120px;
+    border: 1px solid #0ca0eb;
+    height: 30px;
+    padding-top: 3px;
+    width: 190px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #1699ea;
+    box-shadow: 0px 0px 1px #060606;
+    color: #000000b3;
+
+}
+div.refined:hover{
+    opacity: 0.6;
+}
+div.refined>span{
+    display: block;
+}
+#ratingRefined{
+    display: none;   
+    position: absolute;
+    top: 520px;
+    left: 53px;    
+}
+#ratingRefined h3
+{
+    color: white;
+    font-size: 20px;
+}
+#ratingRefined>.row>div.col-xs-6{
+    width: 375px;
+   
+    
+}
+
+#ratingRefined p{
+    color: white;
+    margin-top   :25px;
+    margin-left: 8px;
+    
+}
+#ratingRefined p span{
+    display: block;
+    margin-top: 10px;
+}
+.choice{
+    color: white;
+}
+.starrr a{
+    font-size: 25px;
+}
+div.pointer-label{
+   font-size: 19px;
+}

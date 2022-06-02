@@ -1,0 +1,32 @@
+[
+	{
+		"Place":"Bongok, Thailand",
+		"fontawesomeIcon":"view",
+		"properties":3838
+	},
+	{
+		"Place":"Mandalay, Myanmar",
+		"fontawesomeIcon":"star",
+		"properties":690
+	},
+	{
+		"Place":"Singapore, Singapore",
+		"fontawesomeIcon":"eye",
+		"properties":9090
+	},
+	{
+		"Place":"Toyko, Japan",
+		"fontawesomeIcon":"star",
+		"properties":
+	},
+	{
+		"Place":"Town1, Country1",
+		"fontawesomeIcon":"star",
+		"properties":3838
+	},
+	{
+		"Place":"Town2, Country2",
+		"fontawesomeIcon":"home",
+		"properties":666
+	}
+]
